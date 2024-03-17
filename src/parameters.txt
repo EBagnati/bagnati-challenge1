@@ -1,0 +1,25 @@
+# ============================================================
+# TEXT FILE TO SET THE PARAMETERS OF THE PROBLEM
+# ============================================================
+
+# Initial guess of the minimum written as a string (separate coordinates with a space)
+x_0 = '0 0'
+
+# Tolerance on the residual
+eps_r = 1.e-6
+
+# Tolerance on the step length
+eps_s = 1.e-6
+
+# Initial value of the learning rate alpha
+alpha_0 = 0.01
+
+# Parameter mu used in exponential and inverse decay
+mu = 0.2
+
+# Parameter sigma used in Armijo Rule
+sigma = 0.25
+
+# Maximum number of iterations
+kmax = 1000
+    
