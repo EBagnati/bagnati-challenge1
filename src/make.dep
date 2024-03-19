@@ -1,3 +1,0 @@
-Parameters.o: Parameters.cpp Parameters.hpp helper.hpp ../include/GetPot
-helper.o: helper.cpp helper.hpp
-main.o: main.cpp Parameters.hpp helper.hpp
