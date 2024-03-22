@@ -6,15 +6,15 @@ Parameters::Parameters(const std::string& filename)
 {
     GetPot file(filename.c_str());
 
-    epsilon_r = file("eps_r", 0.);
-    epsilon_s = file("eps_s", 0.);
-    alpha_0 = file("alpha_0", 0.);
-    mu = file("mu", 0.);
-    sigma = file("sigma", 0.);
-    kmax = file("kmax", 0);
-    h = file("h", 0.);
+    epsilon_r = file("eps_r", 1.e-6);
+    epsilon_s = file("eps_s", 1.e-6);
+    alpha_0 = file("alpha_0", 0.1);
+    mu = file("mu", 0.1);
+    sigma = file("sigma", 0.1);
+    kmax = file("kmax", 100);
+    h = file("h", 0.1);
     
-    std::istringstream iss{file("x_0", "")};
+    std::istringstream iss{file("x_0", "0 0")};
     double coord;
     while(iss >> coord)
     {

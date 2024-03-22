@@ -5,8 +5,6 @@
 #include <string>
 #include "helper.hpp"
 
-using Point=std::vector<double>;
-
 struct Parameters
 {
     // Here I store all the parameters of my problem

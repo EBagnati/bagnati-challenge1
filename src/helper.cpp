@@ -1,6 +1,6 @@
 #include "helper.hpp"
 
-double vector_norm(const std::vector<double> &p)
+double vector_norm(const Point& p)
 {
     double norm = 0;
 
@@ -27,30 +27,6 @@ void print_vector(const std::vector<double>& v, const std::string& name)
             std::cout << "]" << std::endl;
         }
     }
-}
-
-Rn_Function numerical_gradient(const R_Function& f, const double h)
-{
-    return [f,h] (const Point& x) {
-        // Point to store the resulting gradient
-        Point res(x.size());
-        // Points x_h+1 and x_h-1 used in the centeral difference scheme 
-        Point x_up;
-        Point x_down;
-
-        for(size_t i = 0; i < x.size(); ++i)
-        {
-            // At each iteration, increase (or decrease) just the i-th component of x_up (or x_down) by the step h
-            x_up = x;
-            x_down = x;
-            x_up[i] += h;            
-            x_down[i] -= h;
-
-            // Central difference scheme for the i-th derivative
-            res[i] = (f(x_up) - f(x_down)) / (2.0 * h);
-        }
-        return res;
-    };
 }
 
 Point operator-(const Point& p1, const Point& p2)
