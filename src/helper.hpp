@@ -6,9 +6,16 @@
 #include <vector>
 #include <iostream> // To print error messages
 #include <cmath>    // To compute sqrt for the norm
+#include <functional> // To include function wrappers
 
 // I will use std::vector<double> to represent vectorial quantities and points in the space Rn
 using Point = std::vector<double>;
+
+// R_function will represent a function from R^n to R (e.g. the function f to minimize)
+using R_Function = std::function<double(Point)>;
+
+// Rn_function will represent a function from R^n to R^n (e.g. the gradient)
+using Rn_Function = std::function<Point(Point)>;
 
 // Enumerator to choose which strategy to use to update alpha_k
 enum Strategy {EXPONENTIAL, INVERSE, ARMIJO};
@@ -24,5 +31,8 @@ std::vector<double> scalar_vector_prod(double s, const std::vector<double>& v);
 
 // Function to print a vector
 void print_vector(const std::vector<double>& v, const std::string& name);
+
+// Function to compute the gradient by finite differences
+Rn_Function numerical_gradient(const R_Function& f, const double h);
 
 #endif

@@ -5,22 +5,58 @@
 
 
 double fun(const Point& x);
-Point gradient_fun(const Point& x);
+Point exact_grad(const Point& x);
 
-template<int S> Point minimize(const std::function<double(Point)>& f, const std::function<Point(Point)>& grad_f, const Parameters& parameters);
+template<int S> Point minimize(const R_Function& f, const Rn_Function& grad_f, const Parameters& parameters);
 
 int main()
 {
     // Read and print parameters
     Parameters parameters("parameters.txt");
     parameters.print();
+
+    // Define function wrapper for exact and numerical gradient
+    std::vector<Rn_Function> gradient_fun;
+    gradient_fun.push_back(exact_grad);
+    gradient_fun.push_back(numerical_gradient(fun, parameters.h));
+
+    // Let the user choose between exact and numerical gradient
+    std::cout << "\nWould you like to use exact gradient (0) or numerical gradient (1)?" << std::endl;
+    unsigned choice = 0;
+    std::cin >> choice;
+
+    if(choice != 0 && choice != 1)
+    {
+        // Invalid input
+        std::cerr << "Invalid input. Using exact gradient as default" << std::endl;
+        choice = 0;
+    }
+    
     
     // Compute minimum
-    Point minimum = minimize<ARMIJO>(fun, gradient_fun, parameters);
+    Point minimum = minimize<ARMIJO>(fun, gradient_fun[choice], parameters);
 
     // Print the solution
     std::cout << "==============================" << std::endl;
-    std::cout << "SOLUTION" << std::endl;
+    std::cout << "SOLUTION ARMIJO" << std::endl;
+    std::cout << "==============================" << std::endl;
+    print_vector(minimum, "x_min");
+
+    // Compute minimum
+    minimum = minimize<EXPONENTIAL>(fun, gradient_fun[choice], parameters);
+
+    // Print the solution
+    std::cout << "==============================" << std::endl;
+    std::cout << "SOLUTION EXPONENTIAL" << std::endl;
+    std::cout << "==============================" << std::endl;
+    print_vector(minimum, "x_min");
+
+    // Compute minimum
+    minimum = minimize<INVERSE>(fun, gradient_fun[choice], parameters);
+
+    // Print the solution
+    std::cout << "==============================" << std::endl;
+    std::cout << "SOLUTION INVERSE" << std::endl;
     std::cout << "==============================" << std::endl;
     print_vector(minimum, "x_min");
  
@@ -36,7 +72,7 @@ double fun(const Point& x)
     return x1*x2 + 4.0*pow(x1,4) + pow(x2,2) + 3.0*x1;
 }
 
-Point gradient_fun(const Point& x)
+Point exact_grad(const Point& x)
 {
     Point grad(2);
     double x1 = x[0];
@@ -49,7 +85,7 @@ Point gradient_fun(const Point& x)
 }
 
 
-template<int S> Point minimize(const std::function<double(Point)>& f, const std::function<Point(Point)>& grad_f, const Parameters& parameters)
+template<int S> Point minimize(const R_Function& f, const Rn_Function& grad_f, const Parameters& parameters)
 {
     unsigned k = 0;                 // Number of iterations
     Point x_k = parameters.x_0;     
@@ -65,13 +101,13 @@ template<int S> Point minimize(const std::function<double(Point)>& f, const std:
         if constexpr(S == EXPONENTIAL)
         {
             // Implement exponential decay
-            alpha_k = parameters.alpha_0 * exp(-parameters.mu*k);
+            alpha_k = parameters.alpha_0 * exp(-parameters.mu* k);
         }
 
         else if constexpr(S == INVERSE)
         {
             // Implement inverse decay
-            alpha_k = parameters.alpha_0 / (1. + parameters.mu * k);
+            alpha_k = parameters.alpha_0 / (1. + parameters.mu *k);
         }
 
         else if constexpr(S == ARMIJO)

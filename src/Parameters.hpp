@@ -21,6 +21,7 @@ struct Parameters
     double mu;              // Parameter mu used in exponential and inverse decay
     double sigma;           // Parameter sigma used in Armijo rule
     unsigned kmax;          // Max number of iterations
+    double h;               // Step length in central difference scheme to approximate the gradient
     
     // Method to print all parameters
     void print() const;

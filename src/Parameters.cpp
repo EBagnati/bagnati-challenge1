@@ -12,6 +12,7 @@ Parameters::Parameters(const std::string& filename)
     mu = file("mu", 0.);
     sigma = file("sigma", 0.);
     kmax = file("kmax", 0);
+    h = file("h", 0.);
     
     std::istringstream iss{file("x_0", "")};
     double coord;
@@ -34,5 +35,6 @@ void Parameters::print() const
     std::cout << "eps_r = " << epsilon_r << std::endl;
     std::cout << "eps_s = " << epsilon_s << std::endl;
     std::cout << "kmax = " << kmax << std::endl; 
+    std::cout << "h = " << h << std::endl; 
     print_vector(x_0, "x_0");
 }

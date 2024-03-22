@@ -12,7 +12,7 @@ eps_r = 1.e-6
 eps_s = 1.e-6
 
 # Initial value of the learning rate alpha
-alpha_0 = 0.01
+alpha_0 = 0.25
 
 # Parameter mu used in exponential and inverse decay
 mu = 0.2
@@ -23,3 +23,5 @@ sigma = 0.25
 # Maximum number of iterations
 kmax = 1000
     
+# Step length in central difference scheme to approximate the gradient
+h = 0.01
