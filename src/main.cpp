@@ -115,7 +115,7 @@ template<int S> Point minimize(const R_Function& f, const Rn_Function& grad_f, c
             // Implement Armijo Rule
             alpha_k = parameters.alpha_0;
 
-            while((f(x_k) - f(vector_diff(x_k, scalar_vector_prod(alpha_k, grad_f(x_k))))) < parameters.sigma*alpha_k*pow(vector_norm(grad_f(x_k)), 2))
+            while((f(x_k) - f(x_k - (alpha_k * grad_f(x_k)))) < parameters.sigma*alpha_k*pow(vector_norm(grad_f(x_k)), 2))
             {
                 // The decrease condition is not satisfied -> divide alpha by 2
                 alpha_k = alpha_k / 2.0;
@@ -123,10 +123,10 @@ template<int S> Point minimize(const R_Function& f, const Rn_Function& grad_f, c
 
         }
 
-        x_k_1 = vector_diff(x_k, scalar_vector_prod(alpha_k, grad_f(x_k)));
+        x_k_1 = x_k - (alpha_k * grad_f(x_k));
 
         // Evaluate stopping criteria. If at least one of them is satisfied, 'terminate' becomes 'true' and I exit the loop
-        terminate = vector_norm(vector_diff(x_k_1, x_k)) < parameters.epsilon_s || std::abs(f(x_k_1) - f(x_k)) < parameters.epsilon_r || k > parameters.kmax;
+        terminate = vector_norm(x_k_1 - x_k) < parameters.epsilon_s || std::abs(f(x_k_1) - f(x_k)) < parameters.epsilon_r || k > parameters.kmax;
         x_k = x_k_1;
     } 
     

@@ -23,16 +23,25 @@ enum Strategy {EXPONENTIAL, INVERSE, ARMIJO};
 // Function to compute the norm of a vector
 double vector_norm(const std::vector<double>& p);
 
-// Function to compute the difference of two vectors (a - b)
-std::vector<double> vector_diff(const std::vector<double>& a, const std::vector<double>& b);
+// Overload operator '-' to compute difference between Points
+Point operator-(const Point& p1, const Point& p2);
 
-// Function to compute scalar * vector product
-std::vector<double> scalar_vector_prod(double s, const std::vector<double>& v);
+// Overload operator '*' to compute scalar * vector product
+Point operator*(double s, const Point& v);
 
 // Function to print a vector
 void print_vector(const std::vector<double>& v, const std::string& name);
 
 // Function to compute the gradient by finite differences
 Rn_Function numerical_gradient(const R_Function& f, const double h);
+
+// FUNZIONI VECCHIE DA CANCELLARE
+/*
+// Function to compute the difference of two vectors (a - b)
+std::vector<double> vector_diff(const std::vector<double>& a, const std::vector<double>& b);
+
+// Function to compute scalar * vector product
+std::vector<double> scalar_vector_prod(double s, const std::vector<double>& v);
+*/
 
 #endif
