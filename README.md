@@ -1,6 +1,6 @@
-# Challenge 1 - A gradient method for the minimization of a multivariate function
+# Challenge 1 - Minimization of a multivariate function
 
-This program can be used to compute the minimum of a multivariate function through the gradient method. More in detail:
+This program can be used to compute the minimum of a multivariate function through the gradient method and the momentum method. More in detail:
 
 - The parameters of the problem are listed in the text file `parameters.txt`. This is very convenient because they are all gathered in the same place and they can be easily modified by the user
 
