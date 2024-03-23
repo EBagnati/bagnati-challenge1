@@ -40,19 +40,12 @@ double vector_norm(const Point& p);
 // Overload operator '-' to compute difference between Points (p1 - p2)
 Point operator-(const Point& p1, const Point& p2);
 
-// Overload operator '*' to compute scalar * vector product
-Point operator*(double s, const Point& v);
+// Function to compute scalar * vector product
+Point scalar_vector_prod(double s, const Point& v);
 
 // Function to print a vector ('name' is the name we want to display when printing the vector)
 void print_vector(const std::vector<double>& v, const std::string& name);
 
-// FUNZIONI VECCHIE DA CANCELLARE SE VA BENE OVERLOAD
-/*
-// Function to compute the difference of two vectors (a - b)
-std::vector<double> vector_diff(const std::vector<double>& a, const std::vector<double>& b);
 
-// Function to compute scalar * vector product
-std::vector<double> scalar_vector_prod(double s, const std::vector<double>& v);
-*/
 
 #endif

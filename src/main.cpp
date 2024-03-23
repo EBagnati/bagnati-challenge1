@@ -20,7 +20,7 @@ int main()
     unsigned choice = 0;
     std::cin >> choice;
 
-    if(choice != 0 && choice != 1)
+    if(choice > 1)
     {
         // Invalid input
         std::cerr << "Invalid input. Using exact gradient as default" << std::endl;

@@ -4,7 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "../include/**"
+                "../include/**",
+                "../include/muparser/include/**",
+                "/home/ebagnati/GitHub/bagnati-challenge1/include/muparser/include"
             ],
             "defines": [],
             "cStandard": "c17",

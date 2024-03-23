@@ -16,5 +16,4 @@ Point exact_grad(const Point& x);
 // Function to compute the gradient by finite differences
 Rn_Function numerical_gradient(const R_Function& f, const double h);
 
-
 #endif
