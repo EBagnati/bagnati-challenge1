@@ -25,3 +25,6 @@ kmax = 1000
     
 # Step length in central difference scheme to approximate the gradient
 h = 0.01
+
+# Memory parameter for momentum method
+eta = 0.7

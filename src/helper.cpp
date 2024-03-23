@@ -29,6 +29,26 @@ void print_vector(const std::vector<double>& v, const std::string& name)
     }
 }
 
+Point operator+(const Point& p1, const Point& p2)
+{
+    Point diff;
+
+    if(p1.size() != p2.size())
+    {
+        std::cerr << "ERROR: vectors have different size!" << std::endl;
+        return diff;
+    }
+
+    // Since the size is known, preallocate space to be more efficient
+    diff.resize(p1.size());
+    for(size_t i = 0; i < p1.size(); ++i)
+    {
+        diff[i] = p1[i] + p2[i];
+    }
+
+    return diff;
+}
+
 Point operator-(const Point& p1, const Point& p2)
 {
     Point diff;

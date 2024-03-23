@@ -20,7 +20,7 @@ int main()
     unsigned choice = 0;
     std::cin >> choice;
 
-    if(choice > 1)
+    if(choice != 0 && choice != 1)
     {
         // Invalid input
         std::cerr << "Invalid input. Using exact gradient as default" << std::endl;
@@ -28,31 +28,39 @@ int main()
     }
     
     
-    // Compute minimum
-    Point minimum = minimize<ARMIJO>(fun, gradient_fun[choice], parameters);
-
-    // Print the solution
+    // Compute and print minimum with gradient method - armijo rule 
     std::cout << "==============================" << std::endl;
-    std::cout << "SOLUTION ARMIJO" << std::endl;
+    std::cout << "GRADIENT METHOD - ARMIJO" << std::endl;
     std::cout << "==============================" << std::endl;
+    Point minimum = minimize_gradient<ARMIJO>(fun, gradient_fun[choice], parameters);
     print_vector(minimum, "x_min");
 
-    // Compute minimum
-    minimum = minimize<EXPONENTIAL>(fun, gradient_fun[choice], parameters);
-
-    // Print the solution
+    // Compute and print minimum with gradient method - exponential decay 
     std::cout << "==============================" << std::endl;
-    std::cout << "SOLUTION EXPONENTIAL" << std::endl;
+    std::cout << "GRADIENT METHOD -  EXPONENTIAL" << std::endl;
     std::cout << "==============================" << std::endl;
+    minimum = minimize_gradient<EXPONENTIAL>(fun, gradient_fun[choice], parameters);
     print_vector(minimum, "x_min");
 
-    // Compute minimum
-    minimum = minimize<INVERSE>(fun, gradient_fun[choice], parameters);
+    // Compute and print minimum with gradient method - inverse decay 
+    std::cout << "==============================" << std::endl;
+    std::cout << "GRADIENT METHOD -  INVERSE" << std::endl;
+    std::cout << "==============================" << std::endl;
+    minimum = minimize_gradient<INVERSE>(fun, gradient_fun[choice], parameters);
+    print_vector(minimum, "x_min");
 
-    // Print the solution
+    // Compute minimum with momentum method - exponential decay
     std::cout << "==============================" << std::endl;
-    std::cout << "SOLUTION INVERSE" << std::endl;
+    std::cout << "MOMENTUM METHOD - EXPONENTIAL" << std::endl;
     std::cout << "==============================" << std::endl;
+    minimum = minimize_momentum<EXPONENTIAL>(fun, gradient_fun[choice], parameters);
+    print_vector(minimum, "x_min");
+
+    // Compute minimum with momentum method - inverse decay
+    std::cout << "==============================" << std::endl;
+    std::cout << "MOMENTUM METHOD - INVERSE" << std::endl;
+    std::cout << "==============================" << std::endl;
+    minimum = minimize_momentum<INVERSE>(fun, gradient_fun[choice], parameters);
     print_vector(minimum, "x_min");
  
     return 0;

@@ -37,6 +37,9 @@ enum Strategy {EXPONENTIAL, INVERSE, ARMIJO};
 // Function to compute the norm of a vector/a Point
 double vector_norm(const Point& p);
 
+// Overload operator '+' to compute sum between Points (p1 + p2)
+Point operator+(const Point& p1, const Point& p2);
+
 // Overload operator '-' to compute difference between Points (p1 - p2)
 Point operator-(const Point& p1, const Point& p2);
 
@@ -45,7 +48,5 @@ Point scalar_vector_prod(double s, const Point& v);
 
 // Function to print a vector ('name' is the name we want to display when printing the vector)
 void print_vector(const std::vector<double>& v, const std::string& name);
-
-
 
 #endif

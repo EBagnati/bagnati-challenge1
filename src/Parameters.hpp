@@ -20,6 +20,7 @@ struct Parameters
     double sigma;           // Parameter sigma used in Armijo rule
     unsigned kmax;          // Max number of iterations
     double h;               // Step length in central difference scheme to approximate the gradient
+    double eta;             // Memory parameter for momentum method
     
     // Method to print all parameters
     void print() const;
