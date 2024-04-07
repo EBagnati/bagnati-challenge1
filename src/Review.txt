@@ -1,0 +1,10 @@
+The README is good, but it is missing the clear instructions on hwo to compile your code.
+What I would expect is:
+
+git clone ...
+cd src/
+make
+
+Also, maybe I would have put the parameter.txt in a data folder.
+
+Code design is pretty nice. Also the implementation and the comments are rich, however the muparser and the extras where not done.
